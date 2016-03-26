@@ -15,8 +15,8 @@ public class SailsdTest {
     }
 
     @Test
-    public void testConnect() throws Exception {
+    public void testConnection() throws Exception {
         Sailsd sailsd = new Sailsd("localhost", 3333);
-        sailsd.connect();
+        sailsd.getConnection();
     }
 }

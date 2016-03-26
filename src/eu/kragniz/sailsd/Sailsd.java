@@ -13,7 +13,7 @@ public class Sailsd {
         this.port = port;
     }
 
-    public void connect() throws IOException {
-        this.sailsdSocket = new Socket(this.hostname, this.port);
+    public Socket getConnection() throws IOException {
+        return new Socket(this.hostname, this.port);
     }
 }
