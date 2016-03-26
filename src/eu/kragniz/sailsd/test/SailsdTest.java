@@ -4,6 +4,9 @@ import eu.kragniz.sailsd.Sailsd;
 import org.junit.*;
 import static org.junit.Assert.*;
 
+/**
+ * Note: these tests require sailsd to be running and listening on localhost:3333
+ */
 public class SailsdTest {
 
     @Test
