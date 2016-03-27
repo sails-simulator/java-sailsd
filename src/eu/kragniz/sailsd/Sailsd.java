@@ -1,8 +1,6 @@
 package eu.kragniz.sailsd;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.net.Socket;
 import static java.lang.System.arraycopy;
 
@@ -29,10 +27,15 @@ public class Sailsd {
     public String sendMessageString(String message) throws IOException {
         Socket connection = getConnection();
         DataOutputStream out = new DataOutputStream(connection.getOutputStream());
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(connection.getInputStream())
+        );
+
         byte[] messageBytes = stringToNullBytes(message);
         out.write(messageBytes, 0, messageBytes.length);
-        connection.close();
 
-        return "";
+        String returnValue = in.readLine();
+        connection.close();
+        return returnValue;
     }
 }

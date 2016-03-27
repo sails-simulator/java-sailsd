@@ -23,6 +23,7 @@ public class SailsdTest {
     @Test
     public void testSendMessageString() throws Exception {
         Sailsd sailsd = new Sailsd("localhost", 3333);
-        sailsd.sendMessageString("this should fail");
+        String v = sailsd.sendMessageString("{\"request\": [\"version\"]}");
+        assertEquals("{\"version\": \"1.0\"}", v);
     }
 }
