@@ -2,6 +2,9 @@ package eu.kragniz.sailsd.test;
 
 import eu.kragniz.sailsd.Sailsd;
 import org.junit.*;
+
+import java.io.IOException;
+
 import static org.junit.Assert.*;
 
 /**
@@ -25,5 +28,12 @@ public class SailsdTest {
         Sailsd sailsd = new Sailsd("localhost", 3333);
         String v = sailsd.sendMessageString("{\"request\": [\"version\"]}");
         assertEquals("{\"version\": \"1.0\"}", v);
+    }
+
+    @Test
+    public void testGetVersion() throws IOException {
+        Sailsd sailsd = new Sailsd("localhost", 3333);
+        double version = sailsd.getVersion();
+        assertEquals(1.0, version, 0.01);
     }
 }

@@ -1,5 +1,7 @@
 package eu.kragniz.sailsd;
 
+import com.google.gson.Gson;
+
 import java.io.*;
 import java.net.Socket;
 import static java.lang.System.arraycopy;
@@ -7,6 +9,8 @@ import static java.lang.System.arraycopy;
 public class Sailsd {
     private String hostname;
     private int port;
+
+    private static Gson gson = new Gson();
 
     public Sailsd(String hostname, int port) {
         this.hostname = hostname;
@@ -37,5 +41,12 @@ public class Sailsd {
         String returnValue = in.readLine();
         connection.close();
         return returnValue;
+    }
+
+    public double getVersion() throws IOException {
+        String output = sendMessageString("{\"request\": [\"version\"]}");
+        SailsdAPIResponse resp = gson.fromJson(output, SailsdAPIResponse.class);
+
+        return resp.version;
     }
 }
