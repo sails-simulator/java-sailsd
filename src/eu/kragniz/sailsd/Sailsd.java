@@ -43,9 +43,13 @@ public class Sailsd {
         return returnValue;
     }
 
+    private SailsdAPIResponse getResponse(String message) throws IOException {
+        String output = sendMessageString(message);
+        return gson.fromJson(output, SailsdAPIResponse.class);
+    }
+
     public double getVersion() throws IOException {
-        String output = sendMessageString("{\"request\": [\"version\"]}");
-        SailsdAPIResponse resp = gson.fromJson(output, SailsdAPIResponse.class);
+        SailsdAPIResponse resp = getResponse("{\"request\": [\"version\"]}");
 
         return resp.version;
     }
